@@ -2,7 +2,7 @@ import java.util.*;
 
 class PhoneBookMain {
     // Static ArrayList to store all the contacts of the class
-    static ArrayList<Contact> phone_book = new ArrayList<Contact>()
+    static ArrayList<Contact> phone_book = new ArrayList<Contact>();
   
     // Print menu function
     static void printMenu() {
@@ -20,11 +20,11 @@ class PhoneBookMain {
         System.out.println("11 - exit");
     }
 
-    public static void main(string[] args) {
+    public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         
         while (true) {
-        printMenu()
+        printMenu();
         String choice = scn.nextLine();
             switch (choice) {
                 case "1":
@@ -59,7 +59,7 @@ class PhoneBookMain {
                     break;
                 case "11":
                     System.out.println("Goodbye !");
-                    break loop;  
+                    break;
             }
         }
     }
