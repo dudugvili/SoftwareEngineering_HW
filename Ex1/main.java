@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 class PhoneBookMain {
     // Static ArrayList to store all the contacts of the class
@@ -31,7 +33,7 @@ class PhoneBookMain {
                     addContact(phone_book);
                     break;
                case "2":
-                    delContact(phone_book);
+                    //delContact(phone_book);
                     break;
                 case "3":
                     printContacts(phone_book);
@@ -40,22 +42,22 @@ class PhoneBookMain {
                     searchContact(phone_book);
                     break;
                 case "5":
-                    sortAZ(phone_book);
+                    //sortAZ(phone_book);
                     break;
                 case "6":
-                    sortZA(phone_book);
+                    //sortZA(phone_book);
                     break;
                 case "7":
-                    removeDouble(phone_book);
+                    //removeDouble(phone_book);
                     break;
                 case "8":
-                    reverseOrder(phone_book);
+                    //reverseOrder(phone_book);
                     break;
                 case "9":
                     saveToFile(phone_book);
                     break;
                 case "10":
-                    loadFromFile(phone_book);
+                    //loadFromFile(phone_book);
                     break;
                 case "11":
                     System.out.println("Goodbye !");
@@ -102,5 +104,79 @@ class PhoneBookMain {
         //here we enter the values to a placeHolder of type Contact and pushing it into the linked list.
         Contact placeHolder = new Contact(fullName,phoneNumber);
         phone_book.add(placeHolder);
+    }
+
+    public static void printContacts(ArrayList<Contact> phone_book)
+    {
+        // if the phone book is empty
+        if (phone_book.isEmpty()) {
+            System.out.println("The Phone Book is empty!");
+        }
+        else
+        {
+            System.out.println("Phone Book Contacts:\n----------------------");
+            // make an iterator & pass all over the phone book
+            Iterator<Contact> iterator = phone_book.iterator();
+            while (iterator.hasNext())
+            {
+                Contact tmpContact = iterator.next();
+                tmpContact.printContact();
+                System.out.println("----------------------");
+            }
+            System.out.println("End of Phone Book");
+        }
+    }
+
+
+    public static void searchContact(ArrayList<Contact> phone_book) {
+        // make a scanner for this function
+        Scanner sForSearch = new Scanner(System.in);
+        System.out.println("Please enter the name to search for:");
+        String name = sForSearch.nextLine();
+
+        boolean flag = false;
+        System.out.println("Search Results for \"" + name + "\" is:\n----------------------");
+
+        // make an iterator and pass all over the phone book
+        Iterator<Contact> iterator = phone_book.iterator();
+        while (iterator.hasNext())
+        {
+            // temp contact + find if equal to the name
+            Contact tmpContact = iterator.next();
+            if (tmpContact.getName().equalsIgnoreCase(name))
+            {
+                tmpContact.printContact();
+                System.out.println("----------------------");
+                // we found at least one contact with this name
+                flag = true;
+            }
+        }
+        if (!flag)
+        {
+            System.out.println("Contact not found.");
+        }
+    }
+
+    public static void saveToFile(ArrayList<Contact> phone_book)
+    {
+        Scanner sForSave = new Scanner(System.in);
+        System.out.println("Enter the file name to save the phone book in:");
+        String fileName = sForSave.nextLine();
+
+        try (FileWriter fileWriter = new FileWriter(fileName))
+        {
+            Iterator<Contact> iterator = phone_book.iterator();
+            while (iterator.hasNext())
+            {
+                Contact tmpContact = iterator.next();
+                fileWriter.write(tmpContact.getName() + ", " + tmpContact.getPhoneNumber() + "\n");
+            }
+            System.out.println("Phone book data saved to the file: " + fileName);
+        }
+        catch (IOException e)
+        {
+            System.out.println("An error occurred while saving the phone book data to the file");
+            e.printStackTrace();
+        }
     }
 }
