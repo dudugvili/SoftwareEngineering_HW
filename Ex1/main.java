@@ -108,6 +108,7 @@ class PhoneBookMain {
 
     public static void printContacts(ArrayList<Contact> phone_book)
     {
+        // function number 3 - prints the Contacts in the phone book
         // if the phone book is empty
         if (phone_book.isEmpty()) {
             System.out.println("The Phone Book is empty!");
@@ -128,10 +129,12 @@ class PhoneBookMain {
     }
 
 
-    public static void searchContact(ArrayList<Contact> phone_book) {
+    public static void searchContact(ArrayList<Contact> phone_book)
+    {
+        // function number 4 - search for a contact in the phone book, if not fount it's say so
         // make a scanner for this function
         Scanner sForSearch = new Scanner(System.in);
-        System.out.println("Please enter the name to search for:");
+        System.out.println("Please enter the name to search for in the Phone book:");
         String name = sForSearch.nextLine();
 
         boolean flag = false;
@@ -153,26 +156,30 @@ class PhoneBookMain {
         }
         if (!flag)
         {
-            System.out.println("Contact not found.");
+            System.out.println("Contact not found");
         }
     }
 
     public static void saveToFile(ArrayList<Contact> phone_book)
     {
+        // function number 9 - save the phone book to a text file
+        // make a scanner for this function
         Scanner sForSave = new Scanner(System.in);
         System.out.println("Enter the file name to save the phone book in:");
         String fileName = sForSave.nextLine();
 
-        try (FileWriter fileWriter = new FileWriter(fileName))
+        // try to save the file
+        try (FileWriter filer = new FileWriter(fileName))
         {
             Iterator<Contact> iterator = phone_book.iterator();
             while (iterator.hasNext())
             {
                 Contact tmpContact = iterator.next();
-                fileWriter.write(tmpContact.getName() + ", " + tmpContact.getPhoneNumber() + "\n");
+                filer.write(tmpContact.getName() + ", " + tmpContact.getPhoneNumber() + "\n");
             }
             System.out.println("Phone book data saved to the file: " + fileName);
         }
+        // if something want wrong, we alert on the problem
         catch (IOException e)
         {
             System.out.println("An error occurred while saving the phone book data to the file");
