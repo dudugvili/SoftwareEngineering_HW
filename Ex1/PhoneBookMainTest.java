@@ -13,7 +13,7 @@ public class PhoneBookMainTest {
 
     @BeforeEach
     public void setup() {
-        phoneBook = new ArrayList<>();
+        phoneBook = new ArrayList<Contact>();
     }
 
     @Test
@@ -79,7 +79,7 @@ public class PhoneBookMainTest {
 
         // Call the saveToFile method
         PhoneBookMain.saveToFile(phoneBook);
-        Assertions.assertTrue(outContent.toString().contains("Phone book data saved to the file: Phonebook.txt"));
+        Assertions.assertTrue(outContent.toString().contains("Phone book data saved to the file: phonebook.txt"));
 
         // Reset System.out
         System.setOut(System.out);
