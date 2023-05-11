@@ -162,7 +162,7 @@ class PhoneBookMain {
 
     public static void saveToFile(ArrayList<Contact> phone_book)
     {
-        // function number 9 - save the phone book to a txt file
+        // function number 9 - save the phone book to a text file
         // make a scanner for this function
         Scanner sForSave = new Scanner(System.in);
         System.out.println("Enter the file name to save the phone book in:");
