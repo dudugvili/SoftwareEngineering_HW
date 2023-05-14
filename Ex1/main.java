@@ -110,7 +110,7 @@ class PhoneBookMain {
 
     /**
      * Function 3 - Prints the contacts in the phone book.
-     * Also handles the case where the phonebook is empty.
+     * Also handles the case where the phonebook is empty
      *
      * @param phone_book The ArrayList containing the contacts.
      */
