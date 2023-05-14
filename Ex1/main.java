@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 class PhoneBookMain {
@@ -35,10 +37,10 @@ class PhoneBookMain {
                     //delContact(phone_book);
                     break;
                 case "3":
-                    //printContacts(phone_book);
+                    printContacts(phone_book);
                     break;
                 case "4":
-                    //searchContact(phone_book);
+                    searchContact(phone_book);
                     break;
                 case "5":
                     //sortAZ(phone_book);
@@ -53,7 +55,7 @@ class PhoneBookMain {
                     //reverseOrder(phone_book);
                     break;
                 case "9":
-                    //saveToFile(phone_book);
+                    saveToFile(phone_book);
                     break;
                 case "10":
                     //loadFromFile(phone_book);
@@ -104,4 +106,86 @@ class PhoneBookMain {
         Contact placeHolder = new Contact(fullName,phoneNumber);
         phone_book.add(placeHolder);
     }
+
+    public static void printContacts(ArrayList<Contact> phone_book)
+    {
+        // function number 3 - prints the Contacts in the phone book
+        // if the phone book is empty
+        if (phone_book.isEmpty()) {
+            System.out.println("The Phone Book is empty!");
+        }
+        else
+        {
+            System.out.println("Phone Book Contacts:\n----------------------");
+            // make an iterator & pass all over the phone book
+            Iterator<Contact> iterator = phone_book.iterator();
+            while (iterator.hasNext())
+            {
+                Contact tmpContact = iterator.next();
+                tmpContact.printContact();
+                System.out.println("----------------------");
+            }
+            System.out.println("End of Phone Book");
+        }
+    }
+
+
+    public static void searchContact(ArrayList<Contact> phone_book)
+    {
+        // function number 4 - search for a contact in the phone book, if not fount it's say so
+        // make a scanner for this function
+        Scanner sForSearch = new Scanner(System.in);
+        System.out.println("Please enter the name to search for in the Phone book:");
+        String name = sForSearch.nextLine();
+
+        boolean flag = false;
+        System.out.println("Search Results for \"" + name + "\" is:\n----------------------");
+
+        // make an iterator and pass all over the phone book
+        Iterator<Contact> iterator = phone_book.iterator();
+        while (iterator.hasNext())
+        {
+            // temp contact + find if equal to the name
+            Contact tmpContact = iterator.next();
+            if (tmpContact.getName().equalsIgnoreCase(name))
+            {
+                tmpContact.printContact();
+                System.out.println("----------------------");
+                // we found at least one contact with this name
+                flag = true;
+            }
+        }
+        if (!flag)
+        {
+            System.out.println("Contact not found");
+        }
+    }
+
+    public static void saveToFile(ArrayList<Contact> phone_book)
+    {
+        // function number 9 - save the phone book to a txt file
+        // make a scanner for this function
+        Scanner sForSave = new Scanner(System.in);
+        System.out.println("Enter the file name to save the phone book in:");
+        String fileName = sForSave.nextLine();
+
+        // try to save the file
+        try (FileWriter filer = new FileWriter(fileName))
+        {
+            Iterator<Contact> iterator = phone_book.iterator();
+            while (iterator.hasNext())
+            {
+                Contact tmpContact = iterator.next();
+                filer.write(tmpContact.getName() + ", " + tmpContact.getPhoneNumber() + "\n");
+            }
+            System.out.println("Phone book data saved to the file: " + fileName);
+        }
+        // if something want wrong, we alert on the problem
+        catch (IOException e)
+        {
+            System.out.println("An error occurred while saving the phone book data to the file");
+            e.printStackTrace();
+        }
+    }
+
 }
