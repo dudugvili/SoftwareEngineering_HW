@@ -174,7 +174,7 @@ class PhoneBookMain {
     /**
      * Function 9 - Saves the phone book data to a text file.
      * We will get the name of the file from the user in the function.
-     * For any problem in saving/writing the file, we will notify about the error.
+     * For any problem in saving/writing the file, we will notify about the error
      *
      * @param phone_book The ArrayList containing the contacts.
      */
