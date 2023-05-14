@@ -33,7 +33,7 @@ class PhoneBookMain {
                 case "1":
                     addContact(phone_book);
                     break;
-               case "2":
+                case "2":
                     //delContact(phone_book);
                     break;
                 case "3":
@@ -107,51 +107,61 @@ class PhoneBookMain {
         phone_book.add(placeHolder);
     }
 
+
+    /**
+     * Function 3 - Prints the contacts in the phone book.
+     * Also handles the case where the phonebook is empty.
+     *
+     * @param phone_book The ArrayList containing the contacts.
+     */
     public static void printContacts(ArrayList<Contact> phone_book)
     {
-        // function number 3 - prints the Contacts in the phone book
-        // if the phone book is empty
+        // If the phone book is empty
         if (phone_book.isEmpty()) {
             System.out.println("The Phone Book is empty!");
         }
         else
         {
             System.out.println("Phone Book Contacts:\n----------------------");
-            // make an iterator & pass all over the phone book
+            // Make an iterator and pass all over the phone book
             Iterator<Contact> iterator = phone_book.iterator();
             while (iterator.hasNext())
             {
-                Contact tmpContact = iterator.next();
-                tmpContact.printContact();
+                Contact tmp_contact = iterator.next();
+                tmp_contact.printContact();
                 System.out.println("----------------------");
             }
             System.out.println("End of Phone Book");
         }
     }
 
-
+    /**
+     * Function 4 - Searches for a contact in the phone book by name (input by user)
+     * and displays the search results. If not found, we will display "Contact not found".
+     *
+     * @param phone_book The ArrayList containing the contacts.
+     */
     public static void searchContact(ArrayList<Contact> phone_book)
     {
-        // function number 4 - search for a contact in the phone book, if not fount it's say so
-        // make a scanner for this function
-        Scanner sForSearch = new Scanner(System.in);
+        // Make a scanner for this function
+        Scanner s_for_search = new Scanner(System.in);
         System.out.println("Please enter the name to search for in the Phone book:");
-        String name = sForSearch.nextLine();
+        String name = s_for_search.nextLine();
 
         boolean flag = false;
         System.out.println("Search Results for \"" + name + "\" is:\n----------------------");
 
-        // make an iterator and pass all over the phone book
+        // Make an iterator and pass all over the phone book
         Iterator<Contact> iterator = phone_book.iterator();
         while (iterator.hasNext())
         {
-            // temp contact + find if equal to the name
-            Contact tmpContact = iterator.next();
-            if (tmpContact.getName().equalsIgnoreCase(name))
+            // Temp contact + Find if equal to the name
+            Contact tmp_contact = iterator.next();
+            if (tmp_contact.getName().equalsIgnoreCase(name))
             {
-                tmpContact.printContact();
+                tmp_contact.printContact();
                 System.out.println("----------------------");
-                // we found at least one contact with this name
+                // We found at least one contact with this name
                 flag = true;
             }
         }
@@ -161,26 +171,33 @@ class PhoneBookMain {
         }
     }
 
+    /**
+     * Function 9 - Saves the phone book data to a text file.
+     * We will get the name of the file from the user in the function.
+     * For any problem in saving/writing the file, we will notify about the error.
+     *
+     * @param phone_book The ArrayList containing the contacts.
+     */
     public static void saveToFile(ArrayList<Contact> phone_book)
     {
-        // function number 9 - save the phone book to a txt file
-        // make a scanner for this function
-        Scanner sForSave = new Scanner(System.in);
+        // Make a scanner for this function
+        Scanner s_for_save = new Scanner(System.in);
         System.out.println("Enter the file name to save the phone book in:");
-        String fileName = sForSave.nextLine();
+        String file_name = s_for_save.nextLine();
 
-        // try to save the file
-        try (FileWriter filer = new FileWriter(fileName))
+        // Try to save the file
+        try (FileWriter filer = new FileWriter(file_name))
         {
+            // Make an iterator and pass all over the phone book + Write it to the file
             Iterator<Contact> iterator = phone_book.iterator();
             while (iterator.hasNext())
             {
-                Contact tmpContact = iterator.next();
-                filer.write(tmpContact.getName() + ", " + tmpContact.getPhoneNumber() + "\n");
+                Contact tmp_contact = iterator.next();
+                filer.write(tmp_contact.getName() + ", " + tmp_contact.getPhoneNumber() + "\n");
             }
-            System.out.println("Phone book data saved to the file: " + fileName);
+            System.out.println("Phone book data saved to the file: " + file_name);
         }
-        // if something want wrong, we alert on the problem
+        // If something want wrong, we alert on the problem
         catch (IOException e)
         {
             System.out.println("An error occurred while saving the phone book data to the file");

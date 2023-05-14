@@ -22,6 +22,9 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Prints the contact information
+     */
     public void printContact()
     {
         System.out.println("Name: " + name);
