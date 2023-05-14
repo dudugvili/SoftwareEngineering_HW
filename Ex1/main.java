@@ -174,13 +174,13 @@ class PhoneBookMain {
     /**
      * Function 9 - Saves the phone book data to a text file.
      * We will get the name of the file from the user in the function.
-     * For any problem in saving/writing the file, we will notify about the error
+     * For any problem in saving/writing the file, we will notify about the error.
      *
      * @param phone_book The ArrayList containing the contacts.
      */
     public static void saveToFile(ArrayList<Contact> phone_book)
     {
-        // Make a scanner for this function
+        // Make a scanner
         Scanner s_for_save = new Scanner(System.in);
         System.out.println("Enter the file name to save the phone book in:");
         String file_name = s_for_save.nextLine();
