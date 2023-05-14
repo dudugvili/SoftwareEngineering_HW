@@ -180,7 +180,7 @@ class PhoneBookMain {
      */
     public static void saveToFile(ArrayList<Contact> phone_book)
     {
-        // Make a scanner
+        // Make a scanner for this function
         Scanner s_for_save = new Scanner(System.in);
         System.out.println("Enter the file name to save the phone book in:");
         String file_name = s_for_save.nextLine();
