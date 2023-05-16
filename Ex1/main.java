@@ -1,15 +1,6 @@
-import java.util.*;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.*;
 
 class PhoneBookMain {
     // Static ArrayList to store all the contacts of the class
@@ -54,10 +45,10 @@ class PhoneBookMain {
                     //sortAZ(phone_book);
                     break;
                 case "6":
-                    //sortZA(phone_book);
+                    sortZA(phone_book);
                     break;
                 case "7":
-                    //removeDouble(phone_book);
+                    removeDouble(phone_book);
                     break;
                 case "8":
                     //reverseOrder(phone_book);
@@ -193,6 +184,53 @@ class PhoneBookMain {
         {
             System.out.println("An error occurred while saving the phone book data to the file");
             e.printStackTrace();
+        }
+    }
+    public static void sortZA(ArrayList<Contact> phone_book) {
+        if (phone_book.isEmpty()) {
+            System.out.println("The phone book is empty. Nothing to sort.");
+        } else {
+            Collections.sort(phone_book, new Comparator<Contact>() {
+                @Override
+                public int compare(Contact a, Contact b) {
+                    return Long.compare(Long.parseLong(b.getPhoneNumber()), Long.parseLong(a.getPhoneNumber()));
+                }
+            });
+            printContacts(phone_book);
+        }
+    }
+
+    public static void removeDouble(ArrayList<Contact> phone_book) {
+        if (phone_book.isEmpty()) {
+            System.out.println("The phone book is empty. Nothing to remove.");
+        } else if (phone_book.size() == 1) {
+            System.out.println("Only one entry in the phone book. Nothing to remove.");
+        } else {
+            // Create a new ArrayList to store the unique contacts
+            ArrayList<Contact> uniqueContacts = new ArrayList<>();
+
+            for (Contact contact : phone_book) {
+                // Check if the current contact is unique
+                boolean isUnique = true;
+                for (Contact uniqueContact : uniqueContacts) {
+                    if (contact.getName().equals(uniqueContact.getName()) &&
+                            contact.getPhoneNumber().equals(uniqueContact.getPhoneNumber())) {
+                        isUnique = false;
+                        break;
+                    }
+                }
+
+                if (isUnique) {
+                    uniqueContacts.add(contact);
+                }
+            }
+
+            // Clear the original phone_book ArrayList
+            phone_book.clear();
+
+            // Add the unique contacts back to the phone_book ArrayList
+            phone_book.addAll(uniqueContacts);
+
         }
     }
 }
