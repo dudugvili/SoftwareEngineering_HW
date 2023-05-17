@@ -1,9 +1,13 @@
+import java.io.FileNotFoundException;
 import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 class PhoneBookMain {
     // Static ArrayList to store all the contacts of the class
     static ArrayList<Contact> phone_book = new ArrayList<Contact>();
-  
+
     // Print menu function
     static void printMenu() {
         System.out.println("Phone Book Menu: (Enter the number of the action you want to perform)");
@@ -22,45 +26,118 @@ class PhoneBookMain {
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        
+
         while (true) {
-        printMenu();
-        String choice = scn.nextLine();
+            printMenu();
+            String choice = scn.nextLine();
             switch (choice) {
                 case "1":
-                    addContact(phone_book);
+                    //addContact(phone_book);
                     break;
                 case "2":
-                    delContact(phone_book);
+                    //delContact(phone_book);
                     break;
                 case "3":
-                    printContacts(phone_book);
+                    //printContacts(phone_book);
                     break;
                 case "4":
-                    searchContact(phone_book);
+                    //searchContact(phone_book);
                     break;
                 case "5":
-                    sortAZ(phone_book);
+                    //sortAZ(phone_book);
                     break;
                 case "6":
-                    sortZA(phone_book);
+                    //sortZA(phone_book);
                     break;
                 case "7":
-                    removeDouble(phone_book);
+                    //removeDouble(phone_book);
                     break;
                 case "8":
-                    reverseOrder(phone_book);
+                    //reverseOrder(phone_book);
                     break;
                 case "9":
-                    saveToFile(phone_book);
+                    //saveToFile(phone_book);
                     break;
                 case "10":
                     loadFromFile(phone_book);
                     break;
                 case "11":
                     System.out.println("Goodbye !");
+                    System.exit(0); //Exit the program
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
                     break;
             }
+        }
+    }
+
+    /**
+     * Function 3 - Prints the contacts in the phone book.
+     * Also handles the case where the phonebook is empty.
+     *
+     * @param phone_book The ArrayList containing the contacts.
+     */
+    public static void printContacts(ArrayList<Contact> phone_book)
+    {
+        // If the phone book is empty
+        if (phone_book.isEmpty()) {
+            System.out.println("The Phone Book is empty!");
+        }
+        else
+        {
+            System.out.println("Phone Book Contacts:\n----------------------");
+            // Make an iterator and pass all over the phone book
+            Iterator<Contact> iterator = phone_book.iterator();
+            while (iterator.hasNext())
+            {
+                Contact tmp_contact = iterator.next();
+                tmp_contact.printContact();
+                System.out.println("----------------------");
+            }
+            System.out.println("End of Phone Book");
+        }
+    }
+
+
+    /**
+     * Function 10 - Reads contact members from file to the phonebook.
+     * We will get the path of the file from the user, and save it in the phonebook array
+     * For any problem in saving/reading the file, we will notify about the error.
+     *
+     * @param phone_book The ArrayList containing the contacts.
+     */
+
+    public static void loadFromFile(ArrayList<Contact> phone_book) {
+        // Get path for text from the user
+        Scanner s_to_file = new Scanner(System.in);
+        System.out.println("Enter text file path to scan contacts from");
+        String file_path = s_to_file.nextLine();
+        // Make a new text file to read the data from
+        File file = new File(file_path);
+        // Make a scanner for this function
+        try (Scanner reader = new Scanner(file)) {
+            // While there is data to read:
+            while (reader.hasNext()) {
+                // Read till the end of the line:
+                String line = reader.nextLine();
+                // Split the data to a name and a phone number:
+                String[] contactData = line.split(",");
+                //For valid data - save as name and phone number and enter to a contact object
+                //And add to the phonebook
+                if (contactData.length == 2) {
+                    String name = contactData[0].trim();
+                    String phoneNumber = contactData[1].trim();
+                    Contact contact = new Contact(name, phoneNumber);
+                    phone_book.add(contact);
+                } else {
+                    System.out.println("Invalid contact data: " + line);
+                }
+            }
+            System.out.println("Contacts loaded from file successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading from file");
+            e.printStackTrace();
         }
     }
 }

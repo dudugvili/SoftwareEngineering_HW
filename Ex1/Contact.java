@@ -21,4 +21,9 @@ public class Contact {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    public void printContact()
+    {
+        System.out.println("Name: " + name);
+        System.out.println("Phone Number: " + phoneNumber);
+    }
 }
