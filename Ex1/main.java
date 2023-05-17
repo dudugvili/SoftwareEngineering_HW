@@ -67,6 +67,7 @@ class PhoneBookMain {
         }
     }
 
+    
     /**
      * Function 3 - Prints the contacts in the phone book.
      * Also handles the case where the phonebook is empty.
@@ -163,4 +164,47 @@ class PhoneBookMain {
             e.printStackTrace();
         }
     }
+
+    private static void reverseOrder(ArrayList<Contact> phone_book) {
+		// input: phone book
+            // output: phone book in reversed order
+		int half_size=phone_book.size()/2;
+		for(int i=0;i<half_size;i++)
+		{
+			Collections.swap(phone_book,i,phone_book.size()-1-i);
+
+		}
+	}
+
+	private static void sortAZ(ArrayList<Contact> phone_book) {
+		// input: phone book
+		//output: phone sorted by dictionary order
+		for(int i=0;i<phone_book.size()-1;i++)
+		{
+			for(int j=0;j<phone_book.size()-1-i;j++)
+			{
+				if(phone_book.get(j).getName().compareTo(phone_book.get(j+1).getName())>0)
+				{
+					Collections.swap(phone_book,j,j+1);
+
+				}
+			}
+		}
+
+	}
+
+	private static void delContact(ArrayList<Contact> phone_book){
+		// input : name and phone book
+		//output: function deletes contact named name if exists
+        Scanner scn = new Scanner(System.in);
+        System.out.println("enter name of contact you want to remove:");
+        String name=scn.nextLine();
+		for(Contact con : phone_book)
+			if(con.getName()!=null && con.getName().equals(name))
+			{
+				phone_book.remove(con);
+				return;
+			}
+
+	}
 }
