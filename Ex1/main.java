@@ -82,12 +82,10 @@ class PhoneBookMain {
         else
         {
             System.out.println("Phone Book Contacts:\n----------------------");
-            // Make an iterator and pass all over the phone book
-            Iterator<Contact> iterator = phone_book.iterator();
-            while (iterator.hasNext())
+            // Pass all over the phone book
+            for (Contact con : phone_book)
             {
-                Contact tmp_contact = iterator.next();
-                tmp_contact.printContact();
+                con.printContact();
                 System.out.println("----------------------");
             }
             System.out.println("End of Phone Book");
@@ -110,15 +108,13 @@ class PhoneBookMain {
         boolean flag = false;
         System.out.println("Search Results for \"" + name + "\" is:\n----------------------");
 
-        // Make an iterator and pass all over the phone book
-        Iterator<Contact> iterator = phone_book.iterator();
-        while (iterator.hasNext())
+        // Pass all over the phone book
+        for (Contact con : phone_book)
         {
-            // Temp contact + Find if equal to the name
-            Contact tmp_contact = iterator.next();
-            if (tmp_contact.getName().equalsIgnoreCase(name))
+            // Find if equal to the name input
+            if (con.getName().equalsIgnoreCase(name))
             {
-                tmp_contact.printContact();
+                con.printContact();
                 System.out.println("----------------------");
                 // We found at least one contact with this name
                 flag = true;
@@ -147,12 +143,10 @@ class PhoneBookMain {
         // Try to save the file
         try (FileWriter filer = new FileWriter(file_name))
         {
-            // Make an iterator and pass all over the phone book + Write it to the file
-            Iterator<Contact> iterator = phone_book.iterator();
-            while (iterator.hasNext())
+            // Pass all over the phone book + Write it to the file
+            for (Contact con : phone_book)
             {
-                Contact tmp_contact = iterator.next();
-                filer.write(tmp_contact.getName() + ", " + tmp_contact.getPhoneNumber() + "\n");
+                filer.write(con.getName() + ", " + con.getPhoneNumber() + "\n");
             }
             System.out.println("Phone book data saved to the file: " + file_name);
         }
