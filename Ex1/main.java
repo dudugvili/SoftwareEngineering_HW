@@ -196,7 +196,7 @@ class PhoneBookMain {
                     return Long.compare(Long.parseLong(b.getPhoneNumber()), Long.parseLong(a.getPhoneNumber()));
                 }
             });
-            printContacts(phone_book);
+
         }
     }
 
@@ -207,12 +207,12 @@ class PhoneBookMain {
             System.out.println("Only one entry in the phone book. Nothing to remove.");
         } else {
             // Create a new ArrayList to store the unique contacts
-            ArrayList<Contact> uniqueContacts = new ArrayList<>();
+            ArrayList<Contact> unique_contacts  = new ArrayList<>();
 
             for (Contact contact : phone_book) {
                 // Check if the current contact is unique
                 boolean isUnique = true;
-                for (Contact uniqueContact : uniqueContacts) {
+                for (Contact uniqueContact : unique_contacts ) {
                     if (contact.getName().equals(uniqueContact.getName()) &&
                             contact.getPhoneNumber().equals(uniqueContact.getPhoneNumber())) {
                         isUnique = false;
@@ -221,7 +221,7 @@ class PhoneBookMain {
                 }
 
                 if (isUnique) {
-                    uniqueContacts.add(contact);
+                    unique_contacts.add(contact);
                 }
             }
 
@@ -229,7 +229,7 @@ class PhoneBookMain {
             phone_book.clear();
 
             // Add the unique contacts back to the phone_book ArrayList
-            phone_book.addAll(uniqueContacts);
+            phone_book.addAll(unique_contacts);
 
         }
     }
