@@ -1,41 +1,70 @@
+// Import package to have access to static list of phonebook
+package Ex2
+
 class SMSProgram {
     private static Map<String, String> chat_history;
-
+    
+    public SMSProgram() {
+        this.chat_historty = new HashMap<>(); 
+    }
+    
     public static void addChatToContact(String name) {
-        System.out.print("Enter message: ");
-        String message = scanner.nextLine();
-
-        chat_history.put(name, message);
-
+        Contact contact = phoneBook.searchContactByName(name);
+        if(contact!=null)
+        {
+            System.out.print("Enter message: ");
+            Scanner scanner = new Scanner(System.in);
+            String message = scanner.nextLine();
+            scanner.close();
+            chat_history.put(contact, message);
+        }
+        else {
+            System.out.println("Contact does not exist.");
+        }
         System.out.println("Chat added to " + name);
     }
 
     public static void deleteChatWithContact(String name) {
-        if (chat_history.containsKey(name)) {
-            chat_history.remove(name);
-            System.out.println("Chat deleted with " + name);
-        } else {
-            System.out.println("No chat history found for " + name);
+        Contact contact = phoneBook.searchContactByName(name);
+        if(contact!=null)
+        {
+            if (chat_history.containsKey(contact)) {
+                chat_history.remove(contact);
+                System.out.println("Chat deleted with " + name);
+            } 
+            else {
+                System.out.println("No chat history found for " + name);
+            }
+        }
+        else {
+            System.out.println("Contact does not exist.");
         }
     }
 
     public static void printChatWithContact(String name) {
-        if (chat_history.containsKey(name)) {
-            System.out.println("Chat history with " + name + ":");
-            System.out.println(chat_history.get(name));
-        } else {
-            System.out.println("No chat history found for " + name);
+        Contact contact = phoneBook.searchContactByName(name);
+        if(contact!=null)
+        {
+            if (chat_history.containsKey(contact)) {
+                System.out.println("Chat history with " + name + ":");
+                System.out.println(chat_history.get(contact));
+            } 
+            else {
+                System.out.println("No chat history found for " + name);
+            }
         }
-        System.out.println();
+        else {
+            System.out.println("Contact does not exist.");
+        }
     }
 
     public static void searchInChat(phrase) {
         boolean found = false;
-
-        for (String contact_name : chat_history.keySet()) {
-            String message = chat_history.get(contact_name);
+        
+        for (Contact contact : chat_history.keySet()) {
+            String message = chat_history.get(contact);
             if (message.contains(phrase)) {
-                System.out.println("Contact: " + contact_name);
+                System.out.println("Contact: " + contact.name);
                 found = true;
             }
         }
@@ -50,71 +79,11 @@ class SMSProgram {
             System.out.println("No chat history available.");
         } else {
             System.out.println("All Chats:");
-            for (String contact_name : chat_history.keySet()) {
-                System.out.println("Contact: " + contact_name);
-                System.out.println(chat_history.get(contact_name));
+            for (Contact contact : chat_history.keySet()) {
+                System.out.println("Contact: " + contact.name);
+                System.out.println(chat_history.get(contact));
                 System.out.println();
             }
         }
-    }
-}
-
-public class Main {
-    private static Map<String, List<String>> chat_history;
-
-    public static void main(String[] args) {
-        chat_history = new HashMap<>();
-        Scanner scanner = new Scanner(System.in);
-
-        int choice;
-        do {
-            System.out.println("SMS Program");
-            System.out.println("1. Add chat to contact");
-            System.out.println("2. Delete chat with contact");
-            System.out.println("3. Print chat with contact");
-            System.out.println("4. Search for string in chat");
-            System.out.println("5. Print all chats");
-            System.out.println("6. Exit");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
-
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter contact name: ");
-                    String name = scanner.nextLine();
-                    scanner.nextLine();
-                    SMSProgram.addChatToContact(name);
-                    break;
-                case 2:
-                    System.out.print("Enter contact name: ");
-                    String name = scanner.nextLine();
-                    scanner.nextLine();
-                    SMSProgram.deleteChatWithContact(name);
-                    break;
-                case 3:
-                    System.out.print("Enter contact name: ");
-                    String name = scanner.nextLine();
-                    scanner.nextLine();
-                    SMSProgram.printChatWithContact(name);
-                    break;
-                case 4:
-                    System.out.print("Enter contact name: ");
-                    String phrase = scanner.nextLine();
-                    scanner.nextLine();
-                    SMSProgram.searchInChat(phrase);
-                    break;
-                case 5:
-                    SMSProgram.printAllChats();
-                    break;
-                case 6:
-                    System.out.println("Exiting...");
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
-        } while (choice != 6);
-        scanner.close();
     }
 }
