@@ -39,11 +39,24 @@ public class CalendarApp {
                   }
                     System.out.println("Enter Hour:");
                      Hour=scanner.nextInt();
+                     while(Hour>24||Hour<1)
+                     {
+                         System.out.println("Hours invalid! please enter number in range 1-24");
+                         Hour=scanner.nextInt();
+
+                     }
                     System.out.println("Enter Minutes:");
                      Minutes=scanner.nextInt();
+                    while(Minutes>59||Minutes<0)
+                    {
+                        System.out.println("Minutes invalid! please enter number in range 0-59");
+                        Minutes=scanner.nextInt();
+
+                    }
 
 
-                     d=new Date(2023,6,Day,Hour,Minutes);
+
+                    d=new Date(2023,6,Day,Hour,Minutes);
                     //get duration from user
                     System.out.println("Enter Duration of the event:");
                     System.out.println("notice Duration can range from 1-60 in minutes.");
@@ -89,9 +102,20 @@ public class CalendarApp {
                     }
                     System.out.println("Enter Hour:");
                      Hour=scanner.nextInt();
+                    while(Hour>24||Hour<1)
+                    {
+                        System.out.println("Hours invalid! please enter number in range 1-24");
+                        Hour=scanner.nextInt();
+
+                    }
                     System.out.println("Enter Minutes:");
                      Minutes=scanner.nextInt();
+                    while(Minutes>59||Minutes<0)
+                    {
+                        System.out.println("Minutes invalid! please enter number in range 0-59");
+                        Minutes=scanner.nextInt();
 
+                    }
                      d=new Date(2023,6,Day,Hour,Minutes);
                     //get duration from user
                     System.out.println("Enter Duration of the event:");
@@ -141,8 +165,20 @@ public class CalendarApp {
         if (!(day < 1 || day > 30)) {
             System.out.println("Enter Hour:");
             hour = scanner.nextInt();
+            while(hour>24||hour<1)
+            {
+                System.out.println("Hours invalid! please enter number in range 1-24");
+                hour=scanner.nextInt();
+
+            }
             System.out.println("Enter Minutes:");
             minutes = scanner.nextInt();
+            while(minutes>59||minutes<0)
+            {
+                System.out.println("Minutes invalid! please enter number in range 0-59");
+                minutes=scanner.nextInt();
+
+            }
 
             ArrayList<Event> events = _dailyCalendar[day - 1];
 
