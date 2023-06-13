@@ -1,5 +1,6 @@
 // Import package to have access to static list of phonebook
-package Ex2
+/*
+package Ex2;
 
 class SMSProgram {
     private static Map<String, String> chat_history;
@@ -87,3 +88,4 @@ class SMSProgram {
         }
     }
 }
+*/

@@ -60,11 +60,12 @@ public class PhoneBookApp {
                         saveToFile(phone_book);
                         break;
                     case "10":
-                        //loadFromFile(phone_book);
+                        loadFromFile(phone_book);
                         break;
                     case "11":
                         System.out.println("Goodbye !");
                         running = false; // Set running to false to exit the loop
+
                         break;
                     default:
                         System.out.println("Invalid choice. Please try again.");

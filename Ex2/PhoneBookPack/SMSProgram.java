@@ -64,6 +64,7 @@ public class SMSProgram {
         chat_history = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         int choice;
+
         boolean running = true;
         while (running) {
             System.out.println("SMS Program");
@@ -114,7 +115,8 @@ public class SMSProgram {
                     System.out.println("Invalid choice. Please try again.");
                     break;
             }
-            scanner.close();
+
         }
+        scanner.close();
     }
 }

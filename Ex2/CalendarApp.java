@@ -361,4 +361,57 @@ public class CalendarApp {
     public ArrayList<Event>[] getCalendar(){
         return _dailyCalendar;
     }
-};
+
+    private static void printMenuCalendar()
+    {
+        System.out.println("Choose an option in the Calendar app:");
+        System.out.println("1 - Add Event");
+        System.out.println("2 - Remove Event");
+        System.out.println("3 - Print Events by day");
+        System.out.println("4 - Print Events by Contact");
+        System.out.println("5 - Remove conflicts in calendar");
+        System.out.println("6 - Print All Events");
+        System.out.println("7 - Exit");
+    }
+
+    public static void run_Calendar_App(PhoneBook phoneBook) {
+        CalendarApp cal = new CalendarApp();
+// input from user
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+        while (running) {
+            // prints menu
+            printMenuCalendar();
+            String choice = scanner.nextLine();
+            // Activates the function, and keep running until choice = 4
+            switch (choice) {
+                case "1":        //case Add Event
+                    cal.AddEvent(phoneBook);
+                    break;
+                case "2":
+                    cal.RemoveEvent();
+                    break;
+                case "3":
+                    cal.printEventsByDay();
+                    break;
+                case "4":
+                    cal.printEventsByContact();
+                    break;
+                case "5":
+                    cal.RemoveConflictsInCalendar();
+                    break;
+                case "6":
+                    cal.printAllEvents();
+                    break;
+                case "7":
+                    System.out.println("Goodbye From Calendar App!");
+                    running = false;
+                    break;
+                default:
+                    // if we got invalid input for choice - we keep running
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+    };

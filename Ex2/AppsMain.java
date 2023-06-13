@@ -1,3 +1,5 @@
+import PhoneBookPack.Contact;
+
 import java.util.*;
 public class AppsMain{
         static void printMenu() {
@@ -10,6 +12,7 @@ public class AppsMain{
         }
 
         public static void main(String[] args) {
+                PhoneBook phone = new PhoneBook();
                 boolean running = true;
                 Scanner scanner = new Scanner(System.in); // Create Scanner outside the loop
                 while (running) {
@@ -23,7 +26,7 @@ public class AppsMain{
                                         PhoneBookPack.SMSProgram.run();
                                         break;
                                 case "3":
-                                        // CalendarApp();
+                                        CalendarApp.run_Calendar_App(phone);
                                         break;
                                 case "4":
                                         MediaPack.MediaApp.run();
