@@ -1,4 +1,5 @@
 import PhoneBookPack.Contact;
+import PhoneBookPack.PhoneBookApp;
 
 import java.util.*;
 public class AppsMain{
@@ -12,7 +13,7 @@ public class AppsMain{
         }
 
         public static void main(String[] args) {
-                PhoneBook phone = new PhoneBook();
+                PhoneBookApp phone = new PhoneBookApp();
                 boolean running = true;
                 Scanner scanner = new Scanner(System.in); // Create Scanner outside the loop
                 while (running) {

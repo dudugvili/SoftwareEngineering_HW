@@ -62,7 +62,7 @@ public class SMSProgram {
 
     public static void run() {
         chat_history = new HashMap<>();
-        Scanner scanner = new Scanner(System.in);
+        Scanner scannerS = new Scanner(System.in);
         int choice;
 
         boolean running = true;
@@ -75,30 +75,30 @@ public class SMSProgram {
             System.out.println("5. Print all chats");
             System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline character
+            choice = scannerS.nextInt();
+            scannerS.nextLine(); // Consume newline character
             switch (choice) {
                 case 1:
                     System.out.print("Enter contact name: ");
-                    String name1 = scanner.nextLine();
+                    String name1 = scannerS.nextLine();
                     addChatToContact(name1);
                     break;
 
                 case 2:
                     System.out.print("Enter contact name: ");
-                    String name2 = scanner.nextLine();
+                    String name2 = scannerS.nextLine();
                     deleteChatWithContact(name2);
                     break;
 
                 case 3:
                     System.out.print("Enter contact name: ");
-                    String name3 = scanner.nextLine();
+                    String name3 = scannerS.nextLine();
                     printChatWithContact(name3);
                     break;
 
                 case 4:
                     System.out.print("Enter search phrase: ");
-                    String phrase = scanner.nextLine();
+                    String phrase = scannerS.nextLine();
                     searchInChat(phrase);
                     break;
 
@@ -117,6 +117,7 @@ public class SMSProgram {
             }
 
         }
-        scanner.close();
+
     }
+
 }

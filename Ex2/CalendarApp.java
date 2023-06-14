@@ -1,4 +1,7 @@
+import PhoneBookPack.Contact;
+import PhoneBookPack.PhoneBookApp;
 import java.util.*;
+
 
 
 public class CalendarApp {
@@ -12,7 +15,7 @@ public class CalendarApp {
   //AddEvent Function
     // input: phone book object
     //function gets input from user about event and adds it to the calendar
-    public void AddEvent(PhoneBook phoneBook){// input should be phone book reference
+    public void AddEvent(PhoneBookApp phoneBook){// input should be phone book reference
         //check what type of Event user wants to add
         System.out.println("Choose Type of Event to add:");
         System.out.println("1.Meeting");
@@ -39,9 +42,20 @@ public class CalendarApp {
                   }
                     System.out.println("Enter Hour:");
                      Hour=scanner.nextInt();
+                    while(Hour>24||Hour<1)
+                    {
+                        System.out.println("Hours invalid! please enter number in range 1-24");
+                        Hour=scanner.nextInt();
+
+                    }
                     System.out.println("Enter Minutes:");
                      Minutes=scanner.nextInt();
+                    while(Minutes>59||Minutes<0)
+                    {
+                        System.out.println("Minutes invalid! please enter number in range 0-59");
+                        Minutes=scanner.nextInt();
 
+                    }
 
                      d=new Date(2023,6,Day,Hour,Minutes);
                     //get duration from user
@@ -61,7 +75,7 @@ public class CalendarApp {
                     String contactName=scanner.nextLine();
                     contactName=scanner.nextLine();
                     //check if contact exists
-                    Contact contact=phoneBook.searchContactByName(contactName);
+                    Contact contact= phoneBook.searchContactByName(contactName);
                     if(contact!=null)
                     {
                         Event e1=new Event(d,duration);
@@ -89,8 +103,20 @@ public class CalendarApp {
                     }
                     System.out.println("Enter Hour:");
                      Hour=scanner.nextInt();
+                    while(Hour>24||Hour<1)
+                    {
+                        System.out.println("Hours invalid! please enter number in range 1-24");
+                        Hour=scanner.nextInt();
+
+                    }
                     System.out.println("Enter Minutes:");
                      Minutes=scanner.nextInt();
+                    while(Minutes>59||Minutes<0)
+                    {
+                        System.out.println("Minutes invalid! please enter number in range 0-59");
+                        Minutes=scanner.nextInt();
+
+                    }
 
                      d=new Date(2023,6,Day,Hour,Minutes);
                     //get duration from user
@@ -141,8 +167,20 @@ public class CalendarApp {
         if (!(day < 1 || day > 30)) {
             System.out.println("Enter Hour:");
             hour = scanner.nextInt();
+            while(hour>24||hour<1)
+            {
+                System.out.println("Hours invalid! please enter number in range 1-24");
+                hour=scanner.nextInt();
+
+            }
             System.out.println("Enter Minutes:");
             minutes = scanner.nextInt();
+            while(minutes>59||minutes<0)
+            {
+                System.out.println("Minutes invalid! please enter number in range 0-59");
+                minutes=scanner.nextInt();
+
+            }
 
             ArrayList<Event> events = _dailyCalendar[day - 1];
 
@@ -374,7 +412,7 @@ public class CalendarApp {
         System.out.println("7 - Exit");
     }
 
-    public static void run_Calendar_App(PhoneBook phoneBook) {
+    public static void run_Calendar_App(PhoneBookApp phoneBook) {
         CalendarApp cal = new CalendarApp();
 // input from user
         Scanner scanner = new Scanner(System.in);

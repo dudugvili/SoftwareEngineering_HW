@@ -316,5 +316,35 @@ public class PhoneBookApp {
                 e.printStackTrace();
             }
         }
+    public  Contact searchContactByName(String name)
+    {
+        // function number 4 - search for a contact in the phone book, if not fount it's say so
+        // make a scanner for this function
+        //   Scanner sForSearch = new Scanner(System.in);
+        // System.out.println("Please enter the name to search for in the Phone book:");
+        //String name = sForSearch.nextLine();
+
+        boolean flag = false;
+        // System.out.println("Search Results for \"" + name + "\" is:\n----------------------");
+
+        // make an iterator and pass all over the phone book
+        Iterator<Contact> iterator = this.phone_book.iterator();
+        while (iterator.hasNext())
+        {
+            // temp contact + find if equal to the name
+            Contact tmpContact = iterator.next();
+            if (tmpContact.getName().equalsIgnoreCase(name))
+            {
+                // we found at least one contact with this name
+                flag = true;
+                return tmpContact;
+            }
+        }
+        if (!flag)
+        {
+            System.out.println("Contact not found");
+        }
+        return null;
+    }
 }
 

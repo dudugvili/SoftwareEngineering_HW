@@ -1,6 +1,7 @@
 //import Occurrence.java;
 //import Contact.java;
 import com.sun.jdi.request.MethodEntryRequest;
+import PhoneBookPack.Contact;
 
 public class Meeting extends Event {
     private Contact _contact;
